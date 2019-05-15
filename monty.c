@@ -42,18 +42,14 @@ int main(int argc, char **argv)
 		i = 0;
 		for(; buf[j] != '\n'; j++, i++)
 			tmp[i] = buf[j];
-
-		tmp[i] = '\0';
-		exec_comp(tmp, &head);
+		if (buf[j] != '\n' || buf[j+1] != '\0')
+		{
+			tmp[i] = '\0';
+			exec_comp(tmp, &head);
+		}
 		j++;
 	}
-	print_dlistint(head);
-	num_letters = write(STDOUT_FILENO, buf, num_letters);
-	if (num_letters == -1)
-	{
-		free(buf);
-		return (0);
-	}
+
 	close(fd);
 	free_dlistint(head);
 	free(buf);

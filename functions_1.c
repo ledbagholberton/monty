@@ -9,11 +9,17 @@
  */
 void exec_comp (char *tmp, stack_t **head)
 {
-	char *command, *parameter;
+	char *command, *digit;
+	unsigned int parameter;
 
 	command = strtok(tmp, " ");
-	parameter = strtok(NULL, " ");
-	(*get_op_func(command))(head, atoi(parameter));
+	digit = strtok(NULL, " ");
+	if (digit)
+		parameter = atoi(digit);
+	else
+		parameter = 0;
+
+	(*get_op_func(command))(head, parameter);
 /*	printf("command %s\n", command);
 	printf("Parameter %s\n", parameter);*/
 }
@@ -28,9 +34,9 @@ void (*get_op_func(char *command))(stack_t **head, unsigned int parameter)
 {
 	instruction_t ops[] = {
 		{"push", push},
-		{"pall", push},
+		{"pall", pall},
 		{"pint", push},
-		{"nop", push},
+		{"nop", nop},
 		{NULL, NULL}
 	};
 	int i;
@@ -40,7 +46,8 @@ void (*get_op_func(char *command))(stack_t **head, unsigned int parameter)
 		if (strcmp((ops[i].opcode), command) == 0)
 			return(ops[i].f);
 	}
-	return(ops[3].f);
+
+	return(ops[i].f);
 }
 
 
@@ -55,4 +62,35 @@ void (*get_op_func(char *command))(stack_t **head, unsigned int parameter)
 void push(stack_t **head, unsigned int n)
 {
 	add_dnodeint(head, n);
+}
+
+/**
+ * pall - function to print all
+ * @head: head of list
+ * @n: line number in 0
+ *
+ * Return: 0 or error code
+ */
+
+void pall(stack_t **head, unsigned int n)
+{
+	stack_t *head1;
+
+	head1 = *head;
+	(void) n;
+	print_dlistint(head1);
+}
+
+/**
+ * nop - function to do nothing
+ * @head: head of list
+ * @n: line number in 0
+ *
+ * Return: 0 or error code
+ */
+
+void nop(stack_t **head, unsigned int n)
+{
+	(void) n;
+	(void) head;
 }
