@@ -1,5 +1,6 @@
 #include "monty.h"
 
+extra_t tren = {NULL, NULL, 0};
 /**
  * main - entry point
  * @argc: argument count
@@ -9,53 +10,44 @@
  */
 int main(int argc, char **argv)
 {
-	int fd, num_letters, j, i;
-	char tmp[10];
-	char *buf = malloc(sizeof(char) * 1024);
+	int num_letters, j, i;
+	char tmp[1000];
 	stack_t *head;
+	unsigned int line = 0;
 
+	tren.buf = malloc(sizeof(char) * 100024);
+	tren.buf[100023] = '\0';
 	head = NULL;
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
-		free(buf);
-		exit(EXIT_FAILURE);
-	}
-
-	fd = open(argv[1], O_RDONLY);
-
-	if (!argv[1] || fd == -1)
+		free(tren.buf);
+		exit(EXIT_FAILURE); }
+	tren.fd = open(argv[1], O_RDONLY);
+	if (!argv[1] || tren.fd == -1)
 	{
-		fprintf(stderr, "Error: Can't open file %s", argv[1]);
-		free(buf);
-		exit (EXIT_FAILURE);
-	}
-	num_letters = read(fd, buf, sizeof(char) * 1024);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		free(tren.buf);
+		exit(EXIT_FAILURE); }
+	num_letters = read(tren.fd, tren.buf, sizeof(char) * 100024);
 	if (num_letters == -1)
 	{
-		free(buf);
-		return (0);
-	}
+		free(tren.buf);
+		return (0); }
 	j = 0;
-	while(buf[j] != '\0')
+	while (tren.buf[j] != '\0')
 	{
 		i = 0;
-		for(; buf[j] != '\n'; j++, i++)
-			tmp[i] = buf[j];
-
+		for (; tren.buf[j] != '\n' && tren.buf[j] != '\0'; j++, i++)
+			tmp[i] = tren.buf[j];
 		tmp[i] = '\0';
-		exec_comp(tmp, &head);
-		j++;
-	}
-	print_dlistint(head);
-	num_letters = write(STDOUT_FILENO, buf, num_letters);
-	if (num_letters == -1)
-	{
-		free(buf);
-		return (0);
-	}
-	close(fd);
+		if (tmp[0] != '\0')
+		{
+			line++;
+			exec_comp(tmp, &head, line); }
+		j++; }
+	close(tren.fd);
 	free_dlistint(head);
-	free(buf);
+	free(tren.buf);
 	return (0);
 }
