@@ -9,8 +9,23 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-extern int num;
 
+/**
+ * struct extra_s - doubly linked list representation of a stack (or queue)
+ * @num_string: string of num
+ * @str: points to the previous element of the stack (or queue)
+ *
+ * Description: doubly linked list node structure
+ * for stack, queues, LIFO, FIFO Holberton project
+ */
+typedef struct extra_s
+{
+	char *num_string;
+	char *buf;
+	int fd;
+} extra_t;
+
+extern extra_t tren;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -23,9 +38,9 @@ extern int num;
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 
@@ -34,7 +49,7 @@ void pint(stack_t **head, unsigned int n);
 size_t print_dlistint(const stack_t *h);
 size_t print_head(const stack_t *h);
 void (*get_op_func(char *command))(stack_t **head, unsigned int parameter);
-void exec_comp (char *tmp, stack_t **head, unsigned int line);
+void exec_comp(char *tmp, stack_t **head, unsigned int line);
 void push(stack_t **head, unsigned int n);
 stack_t *add_dnodeint(stack_t **head, const int n);
 void free_dlistint(stack_t *head);
@@ -51,8 +66,8 @@ void nop(stack_t **head, unsigned int n);
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 

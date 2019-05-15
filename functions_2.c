@@ -9,29 +9,10 @@
  */
 void exec_comp(char *tmp, stack_t **head, unsigned int line)
 {
-	char *command, *digit;
-	unsigned int flag, i;
+	char *command;
 
-	flag = 0;
 	command = strtok(tmp, " ");
-	digit = strtok(NULL, " ");
-	if (digit)
-	{
-		for (i = 0; digit[i] != '\0'; i++)
-		{
-			if (digit[i] >= 48 && digit[i] <= 57)
-				flag = 0;
-			else
-				flag = 1;
-		}
-		if (flag == 0)
-			num = atoi(digit);
-		else
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", line);
-			exit(EXIT_FAILURE);
-		}
-	}
+	tren.num_string = strtok(NULL, " ");
 	(*get_op_func(command))(head, line);
 }
 
@@ -58,5 +39,5 @@ void (*get_op_func(char *command))(stack_t **head, unsigned int line)
 			return (ops[i].f);
 	}
 
-	return (ops[3].f);
+	return (ops[i].f);
 }

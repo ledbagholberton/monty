@@ -11,8 +11,40 @@
 
 void push(stack_t **head, unsigned int n)
 {
-	add_dnodeint(head, num);
-	(void) n;
+	int number;
+	unsigned int flag = 1, i;
+
+	if (tren.num_string)
+	{
+		for (i = 0; tren.num_string[i] != '\0'; i++)
+		{
+			if (tren.num_string[i] >= 48 &&
+			    tren.num_string[i] <= 57)
+				flag = 0;
+			else
+				flag = 1;
+		}
+		if (flag == 0)
+			number = atoi(tren.num_string);
+		else
+		{
+			close(tren.fd);
+			free(tren.buf);
+			free_dlistint(*head);
+			fprintf(stderr, "L%d: usage: push integer\n", n);
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+	{
+		close(tren.fd);
+		free(tren.buf);
+		free_dlistint(*head);
+		fprintf(stderr, "L%d: usage: push integer\n", n);
+		exit(EXIT_FAILURE);
+	}
+
+	add_dnodeint(head, number);
 }
 
 /**
