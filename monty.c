@@ -7,12 +7,16 @@
  *
  * Return: 0 or exit error
  */
+
+int num;
 int main(int argc, char **argv)
 {
+	
 	int fd, num_letters, j, i;
-	char tmp[10];
+	char tmp[1000];
 	char *buf = malloc(sizeof(char) * 1024);
 	stack_t *head;
+	unsigned int line = 0;
 
 	head = NULL;
 	if (argc != 2)
@@ -26,7 +30,7 @@ int main(int argc, char **argv)
 
 	if (!argv[1] || fd == -1)
 	{
-		fprintf(stderr, "Error: Can't open file %s", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		free(buf);
 		exit (EXIT_FAILURE);
 	}
@@ -42,10 +46,12 @@ int main(int argc, char **argv)
 		i = 0;
 		for(; buf[j] != '\n'; j++, i++)
 			tmp[i] = buf[j];
-		if (buf[j] != '\n' || buf[j+1] != '\0')
+		if (buf[j + 1] != '\0' || buf[j] != '\n' || buf[j] != 0)
 		{
 			tmp[i] = '\0';
-			exec_comp(tmp, &head);
+			printf("%s\n", tmp);
+			line++;
+			exec_comp(tmp, &head, line);
 		}
 		j++;
 	}

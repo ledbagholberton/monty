@@ -21,6 +21,21 @@ size_t print_dlistint(const stack_t *h)
 }
 
 /**
+ * print_head - print Top node
+ * @h: node
+ *
+ * Return: number of nodes
+ */
+size_t print_head(const stack_t *h)
+{
+	if (!h)
+		return (0);
+	printf("%d\n", h->n);
+	return (0);
+}
+
+
+/**
  * add_dnodeint - add node at the begginning
  * @head: node
  * @n: integer

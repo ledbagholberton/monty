@@ -4,24 +4,35 @@
  * exec_comp - execute
  * @tmp: command line
  * @head: head of list
- *
- * Return: void
+ * @line: line number
+ * Return: next line number
  */
-void exec_comp (char *tmp, stack_t **head)
+void exec_comp (char *tmp, stack_t **head, unsigned int line)
 {
 	char *command, *digit;
-	unsigned int parameter;
+	unsigned int flag, i;
 
+	flag = 0;
 	command = strtok(tmp, " ");
 	digit = strtok(NULL, " ");
 	if (digit)
-		parameter = atoi(digit);
-	else
-		parameter = 0;
-
-	(*get_op_func(command))(head, parameter);
-/*	printf("command %s\n", command);
-	printf("Parameter %s\n", parameter);*/
+	{
+		for (i = 0; digit[i] != '\0'; i++)
+		{
+			if (digit[i] >= 48 && digit[i] <= 57)
+				flag = 0;
+			else
+				flag = 1;
+		}
+		if (flag == 0)
+			num = atoi(digit);
+		else
+		{
+			fprintf(stderr, "L%d: usgae: push integer",line);
+			exit (EXIT_FAILURE);
+		}
+	}
+	(*get_op_func(command))(head, line);
 }
 
 /**
@@ -30,17 +41,16 @@ void exec_comp (char *tmp, stack_t **head)
  *
  * Return: No -  0 if fail or call the function
  */
-void (*get_op_func(char *command))(stack_t **head, unsigned int parameter)
+void (*get_op_func(char *command))(stack_t **head, unsigned int line)
 {
 	instruction_t ops[] = {
 		{"push", push},
 		{"pall", pall},
-		{"pint", push},
+		{"pint", pint},
 		{"nop", nop},
 		{NULL, NULL}
 	};
 	int i;
-	
 	for (i = 0; i <= 4; i++)
 	{
 		if (strcmp((ops[i].opcode), command) == 0)
@@ -61,7 +71,8 @@ void (*get_op_func(char *command))(stack_t **head, unsigned int parameter)
 
 void push(stack_t **head, unsigned int n)
 {
-	add_dnodeint(head, n);
+	add_dnodeint(head, num);
+	(void) n;
 }
 
 /**
@@ -93,4 +104,20 @@ void nop(stack_t **head, unsigned int n)
 {
 	(void) n;
 	(void) head;
+}
+
+/**
+ * pint - function to print head
+ * @head: head of list
+ * @n: line number in 0
+ *
+ * Return: 0 or error code
+ */
+
+void pint(stack_t **head, unsigned int n)
+{
+	stack_t *head1;
+	(void) n;
+	head1 = *head;
+	print_head(head1);
 }
