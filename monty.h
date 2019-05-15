@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -25,6 +24,17 @@ typedef struct stack_s
         struct stack_s *next;
 } stack_t;
 
+
+
+
+size_t print_dlistint(const stack_t *h);
+int (*get_op_func(char *command))(stack_t **head, int parameter);
+void exec_comp(char *tmp, stack_t **head);
+stack_t *push(stack_t **head, unsigned int n);
+stack_t *add_dnodeint(stack_t **head, const int n);
+void free_dlistint(stack_t *head);
+int delete_dnodeint_at_index(stack_t **head, unsigned int index);
+
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -39,13 +49,5 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-
-size_t print_dlistint(const dlistint_t *h);
-int (*get_op_func(char *command))(int parameter);
-void exec_comp(char *tmp, stack_t **head);
-stack_t *push(stack_t **head, unsigned int n);
-dlistint_t *add_dnodeint(dlistint_t **head, const int n);
-void free_dlistint(dlistint_t *head);
-int delete_dnodeint_at_index(dlistint_t **head, unsigned int index);
 
 #endif /*  MONTY_H */

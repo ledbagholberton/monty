@@ -6,7 +6,7 @@
  *
  * Return: number of nodes
  */
-size_t print_dlistint(const dlistint_t *h)
+size_t print_dlistint(const stack_t *h)
 {
 	int counter;
 
@@ -27,14 +27,14 @@ size_t print_dlistint(const dlistint_t *h)
  *
  * Return: addres of new element
  */
-dlistint_t *add_dnodeint(dlistint_t **head, const int n)
+stack_t *add_dnodeint(stack_t **head, const int n)
 {
-	dlistint_t *new_node;
+	stack_t *new_node;
 
 	if (!head)
 		return (0);
 
-	new_node = (dlistint_t *) malloc(sizeof(dlistint_t));
+	new_node = (stack_t *) malloc(sizeof(stack_t));
 	if (!new_node)
 		return (0);
 	new_node->n = n;
@@ -53,9 +53,9 @@ dlistint_t *add_dnodeint(dlistint_t **head, const int n)
  *
  * Return: 0
  */
-void free_dlistint(dlistint_t *head)
+void free_dlistint(stack_t *head)
 {
-	dlistint_t *tmp;
+	stack_t *tmp;
 
 	if (!head)
 		return;
@@ -74,10 +74,10 @@ void free_dlistint(dlistint_t *head)
  *
  * Return: 1 if success -1 else
  */
-int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
+int delete_dnodeint_at_index(stack_t **head, unsigned int index)
 {
 	unsigned int i;
-	dlistint_t *temp;
+	stack_t *temp;
 
 	if (!head || !*head)
 		return (-1);
