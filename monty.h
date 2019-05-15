@@ -28,9 +28,9 @@ typedef struct stack_s
 
 
 size_t print_dlistint(const stack_t *h);
-int (*get_op_func(char *command))(stack_t **head, int parameter);
+void (*get_op_func(char *command))(stack_t **head, unsigned int parameter);
 void exec_comp(char *tmp, stack_t **head);
-stack_t *push(stack_t **head, unsigned int n);
+void push(stack_t **head, unsigned int n);
 stack_t *add_dnodeint(stack_t **head, const int n);
 void free_dlistint(stack_t *head);
 int delete_dnodeint_at_index(stack_t **head, unsigned int index);
