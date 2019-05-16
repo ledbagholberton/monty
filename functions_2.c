@@ -13,7 +13,6 @@ void exec_comp(char *tmp, stack_t **head, unsigned int line)
 	void (*exec)(stack_t **head, unsigned int n);
 
 	command = strtok(tmp, " ");
-	printf("Command: %s Line: %d\n", command, line);
 	tren.num_string = strtok(NULL, " ");
 	if (command)
 		exec = get_op_func(command);
@@ -45,8 +44,8 @@ void (*get_op_func(char *command))(stack_t **head, unsigned int line)
 		{NULL, NULL}
 	};
 	int i, len;
-	if (command == '\0')
-		return (ops[3].f);
+
+	printf("Command: %s\n", command);
 	len = strlen(command);
 	for (i = 0; ops[i].opcode; i++)
 	{

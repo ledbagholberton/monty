@@ -9,7 +9,7 @@ push 2
                            
                            
 
-cush 4
+push 4
 
     push 5    
       push    6        
