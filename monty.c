@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 		for (; tren.buf[j] != '\n' && tren.buf[j] != '\0'; j++, i++)
 			tmp[i] = tren.buf[j];
 		tmp[i] = '\0';
-		if (tmp[0] != '\0')
+		if (tmp[0] != '\0' && tmp[0] != '\n')
 		{
 			line++;
 			exec_comp(tmp, &head, line); }
