@@ -15,7 +15,10 @@ void exec_comp(char *tmp, stack_t **head, unsigned int line)
 	command = strtok(tmp, " ");
 	tren.num_string = strtok(NULL, " ");
 	if (command)
+	{
 		exec = get_op_func(command);
+		exec(head, line);
+	}
 	if (exec == NULL)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line, command);
@@ -24,7 +27,6 @@ void exec_comp(char *tmp, stack_t **head, unsigned int line)
 		free_dlistint(*head);
 		exit(EXIT_FAILURE);
 	}
-	exec(head, line);
 }
 
 /**
