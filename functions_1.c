@@ -76,6 +76,7 @@ void nop(stack_t **head, unsigned int n)
 {
 	(void) n;
 	(void) head;
+	printf("Nop\n");
 }
 
 /**
