@@ -25,6 +25,7 @@ typedef struct extra_s
 	char *num_string;
 	char *buf;
 	int fd;
+	char *opcode;
 } extra_t;
 
 extern extra_t tren;
@@ -69,6 +70,9 @@ void mod(stack_t **head, unsigned int n);
 void pchar(stack_t **head, unsigned int n);
 void pstr(stack_t **head, unsigned int n);
 void rotr(stack_t **head, unsigned int n);
+void stack(stack_t **head, unsigned int line);
+void queue(stack_t **head, unsigned int line);
+stack_t *add_dnodeint_end(stack_t **head, const int n);
 
 /**
  * struct instruction_s - opcode and its function
