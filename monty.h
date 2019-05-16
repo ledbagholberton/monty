@@ -14,6 +14,8 @@
  * struct extra_s - doubly linked list representation of a stack (or queue)
  * @num_string: string of num
  * @str: points to the previous element of the stack (or queue)
+ * @buf: buffer
+ * @fd: number file
  *
  * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO Holberton project
