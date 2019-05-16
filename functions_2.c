@@ -13,7 +13,7 @@ void exec_comp(char *tmp, stack_t **head, unsigned int line)
 
 	command = strtok(tmp, " \\n");
 	tren.num_string = strtok(NULL, " \\n");
-	if(command)
+	if (command)
 		(*get_op_func(command))(head, line);
 }
 
