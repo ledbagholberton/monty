@@ -23,3 +23,27 @@ void mul(stack_t **head, unsigned int n)
 
 	pop(head, n);
 }
+
+/**
+ * pstr - function to print string
+ * @head: head of list
+ * @n: line number
+ *
+ * Return: 0 or error code
+ */
+void pstr(stack_t **head, unsigned int n)
+{
+	stack_t *head1;
+
+	head1 = *head;
+	(void) n;
+	while (head1 != NULL)
+	{
+		if (head1->n >= 64 && head1->n <= 123)
+			printf("%c", (char)head1->n);
+		else
+			break;
+		head1 = head1->next;
+	}
+	printf("\n");
+}
