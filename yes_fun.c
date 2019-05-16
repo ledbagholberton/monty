@@ -40,7 +40,7 @@ void sub(stack_t **head, unsigned int n)
 	{
 		close(tren.fd);
 		free(tren.buf);
-		fprintf(stderr, "L%d: can't add, stack too short\n", n);
+		fprintf(stderr, "L%d: can't sub, stack too short\n", n);
 		exit(EXIT_FAILURE);
 	}
 	(*head)->next->n -= (*head)->n;
@@ -71,6 +71,7 @@ void div_func(stack_t **head, unsigned int n)
 	{
 		close(tren.fd);
 		free(tren.buf);
+		free_dlistint(*head);
 		fprintf(stderr, "L%d: division by zero\n", n);
 		exit(EXIT_FAILURE);
 	}
@@ -102,6 +103,7 @@ void mod(stack_t **head, unsigned int n)
 	{
 		close(tren.fd);
 		free(tren.buf);
+		free_dlistint(*head);
 		fprintf(stderr, "L%d: division by zero\n", n);
 		exit(EXIT_FAILURE);
 	}
