@@ -90,7 +90,32 @@ void nop(stack_t **head, unsigned int n)
 void pint(stack_t **head, unsigned int n)
 {
 	stack_t *head1;
-	(void) n;
+
 	head1 = *head;
+	if (!head1)
+	{
+		close(tren.fd);
+		free(tren.buf);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", n);
+		exit(EXIT_FAILURE);
+	}
 	print_head(head1);
+}
+
+void pop(stack_t **head, unsigned int n)
+{
+	stack_t *head1;
+
+	head1 = *head;
+	if (!head1)
+	{
+		close(tren.fd);
+		free(tren.buf);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", n);
+		exit(EXIT_FAILURE);
+	}
+	*head = (*head)->next;
+	free(head1);
+	if (*head)
+		(*head)->prev = NULL;
 }
