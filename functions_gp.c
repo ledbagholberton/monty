@@ -11,7 +11,7 @@ void swap(stack_t **head, unsigned int n)
 {
 	stack_t *aux1, *aux2;
 
-	if (head == NULL || (*head)->next == NULL)
+	if (*head == NULL || (*head)->next == NULL)
 	{
 		close(tren.fd);
 		free(tren.buf);
