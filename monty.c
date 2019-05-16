@@ -15,17 +15,17 @@ int main(int argc, char **argv)
 	stack_t *head;
 	unsigned int line = 0;
 
-	tren.buf = malloc(sizeof(char) * 1024);
+	tren.buf = malloc(sizeof(char) * 100024);
 	if (tren.buf == NULL)
 		return (0);
 
-	for (i = 0; i <= 1023; i++)
+	for (i = 0; i <= 100023; i++)
 		tren.buf[i] = '\0';
 
 	head = NULL;
 	errors(argc, argv);
 
-	num_letters = read(tren.fd, tren.buf, sizeof(char) * 1024);
+	num_letters = read(tren.fd, tren.buf, sizeof(char) * 100024);
 	if (num_letters == -1)
 	{
 		free(tren.buf);
