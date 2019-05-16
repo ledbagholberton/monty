@@ -64,6 +64,7 @@ void sub(stack_t **head, unsigned int n);
 void swap(stack_t **head, unsigned int n);
 void rotl(stack_t **head, unsigned int n);
 void div_func(stack_t **head, unsigned int n);
+void mul(stack_t **head, unsigned int n);
 void mod(stack_t **head, unsigned int n);
 void pchar(stack_t **head, unsigned int n);
 /**

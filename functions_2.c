@@ -46,6 +46,7 @@ void (*get_op_func(char *command))(stack_t **head, unsigned int line)
 		{"add", add},
 		{"sub", sub},
 		{"div", div_func},
+		{"mul", mul},
 		{"mod", mod},
 		{"pchar", pchar},
 		{"nop", nop},
