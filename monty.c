@@ -17,7 +17,10 @@ int main(int argc, char **argv)
 
 	tren.buf = malloc(sizeof(char) * 100024);
 	if (tren.buf == NULL)
-		return (0);
+	{
+		fprintf(stderr,"Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 
 	for (i = 0; i <= 100023; i++)
 		tren.buf[i] = '\0';

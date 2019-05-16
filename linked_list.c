@@ -51,7 +51,12 @@ stack_t *add_dnodeint(stack_t **head, const int n)
 
 	new_node = (stack_t *) malloc(sizeof(stack_t));
 	if (!new_node)
-		return (0);
+	{
+		close(tren.fd);
+		free(tren.buf);
+		free_dlistint(*head);
+		exit(0);
+	}
 	new_node->n = n;
 	new_node->next = *head;
 	new_node->prev = NULL;

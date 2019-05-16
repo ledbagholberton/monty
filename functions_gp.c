@@ -13,6 +13,8 @@ void swap(stack_t **head, unsigned int n)
 
 	if (head == NULL || (*head)->next == NULL)
 	{
+		close(tren.fd);
+		free(tren.buf);
 		fprintf(stderr, "L%d: can't swap, stack too short\n", n);
 		exit(EXIT_FAILURE);
 	}
