@@ -14,7 +14,7 @@ void exec_comp(char *tmp, stack_t **head, unsigned int line)
 
 	command = strtok(tmp, " ");
 	tren.num_string = strtok(NULL, " ");
-	if (command)
+	if (command && command[0] != '#')
 	{
 		exec = get_op_func(command);
 		if (exec == NULL)
