@@ -17,15 +17,16 @@ void exec_comp(char *tmp, stack_t **head, unsigned int line)
 	if (command)
 	{
 		exec = get_op_func(command);
+		if (exec == NULL)
+		{
+			fprintf(stderr, "L%d: unknown instruction %s\n"
+				, line, command);
+			close(tren.fd);
+			free(tren.buf);
+			free_dlistint(*head);
+			exit(EXIT_FAILURE);
+		}
 		exec(head, line);
-	}
-	if (exec == NULL)
-	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line, command);
-		close(tren.fd);
-		free(tren.buf);
-		free_dlistint(*head);
-		exit(EXIT_FAILURE);
 	}
 }
 

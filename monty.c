@@ -15,8 +15,13 @@ int main(int argc, char **argv)
 	stack_t *head;
 	unsigned int line = 0;
 
-	tren.buf = malloc(sizeof(char) * 100024);
-	tren.buf[100023] = '\0';
+	tren.buf = malloc(sizeof(char) * 1024);
+	if (tren.buf == NULL)
+		return (0);
+
+	for (i = 0; i <= 1023; i++)
+		tren.buf[i] = '\0';
+
 	head = NULL;
 	if (argc != 2)
 	{
@@ -29,7 +34,7 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		free(tren.buf);
 		exit(EXIT_FAILURE); }
-	num_letters = read(tren.fd, tren.buf, sizeof(char) * 100024);
+	num_letters = read(tren.fd, tren.buf, sizeof(char) * 1024);
 	if (num_letters == -1)
 	{
 		free(tren.buf);
