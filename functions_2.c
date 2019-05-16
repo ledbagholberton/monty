@@ -10,11 +10,21 @@
 void exec_comp(char *tmp, stack_t **head, unsigned int line)
 {
 	char *command;
+	void (*exec)(stack_t **head, unsigned int n);
 
-	command = strtok(tmp, " \\n");
-	tren.num_string = strtok(NULL, " \\n");
+	command = strtok(tmp, " ");
+	tren.num_string = strtok(NULL, " ");
 	if (command)
-		(*get_op_func(command))(head, line);
+		exec = get_op_func(command);
+	if (exec == NULL)
+	{
+		fprintf(stderr, "L%d: unknown instruction %s\n", line, command);
+		close(tren.fd);
+		free(tren.buf);
+		free_dlistint(*head);
+		exit(EXIT_FAILURE);
+	}
+	exec(head, line);
 }
 
 /**
@@ -32,11 +42,12 @@ void (*get_op_func(char *command))(stack_t **head, unsigned int line)
 		{"nop", nop},
 		{NULL, NULL}
 	};
-	int i;
+	int i, len;
 
-	for (i = 0; i <= 4; i++)
+	len = strlen(command);
+	for (i = 0; ops[i].opcode; i++)
 	{
-		if (strcmp((ops[i].opcode), command) == 0)
+		if (strncmp((ops[i].opcode), command, len) == 0)
 			return (ops[i].f);
 	}
 
