@@ -1,6 +1,6 @@
 #include "monty.h"
 
-extra_t tren = {NULL, NULL, 0};
+extra_t tren = {NULL, NULL, 0, "stack"};
 /**
  * main - entry point
  * @argc: argument count

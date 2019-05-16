@@ -44,7 +44,10 @@ void push(stack_t **head, unsigned int n)
 		exit(EXIT_FAILURE);
 	}
 
-	add_dnodeint(head, number);
+	if (strcmp(tren.opcode, "stack") == 0)
+		add_dnodeint(head, number);
+	else
+		add_dnodeint_end(head, number);
 }
 
 /**
