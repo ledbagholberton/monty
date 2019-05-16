@@ -86,7 +86,6 @@ void nop(stack_t **head, unsigned int n)
  *
  * Return: 0 or error code
  */
-
 void pint(stack_t **head, unsigned int n)
 {
 	stack_t *head1;
@@ -102,6 +101,14 @@ void pint(stack_t **head, unsigned int n)
 	print_head(head1);
 }
 
+
+/**
+ * pop - function to pop head
+ * @head: head of list
+ * @n: line number in 0
+ *
+ * Return: 0 or error code
+ */
 void pop(stack_t **head, unsigned int n)
 {
 	stack_t *head1;
