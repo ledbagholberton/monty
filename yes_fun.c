@@ -25,6 +25,30 @@ void add(stack_t **head, unsigned int n)
 }
 
 /**
+ * sub - function substraction
+ * @head: head of list
+ * @n: Line number
+ *
+ * Return: 0 or error code
+ */
+void sub(stack_t **head, unsigned int n)
+{
+	stack_t *head1;
+
+	head1 = *head;
+	if (!head1 || !head1->next)
+	{
+		close(tren.fd);
+		free(tren.buf);
+		fprintf(stderr, "L%d: can't add, stack too short\n", n);
+		exit(EXIT_FAILURE);
+	}
+	(*head)->next->n -= (*head)->n;
+
+	pop(head, n);
+}
+
+/**
  * div_func - function to pop head
  * @head: head of list
  * @n: line number in 0
@@ -47,7 +71,7 @@ void div_func(stack_t **head, unsigned int n)
 	{
 		close(tren.fd);
 		free(tren.buf);
-		fprintf(stderr, "L%d: division by zero", n);
+		fprintf(stderr, "L%d: division by zero\n", n);
 		exit(EXIT_FAILURE);
 	}
 	(*head)->next->n /= (*head)->n;
@@ -78,7 +102,7 @@ void mod(stack_t **head, unsigned int n)
 	{
 		close(tren.fd);
 		free(tren.buf);
-		fprintf(stderr, "L%d: division by zero", n);
+		fprintf(stderr, "L%d: division by zero\n", n);
 		exit(EXIT_FAILURE);
 	}
 	(*head)->next->n %= (*head)->n;

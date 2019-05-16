@@ -44,6 +44,7 @@ void (*get_op_func(char *command))(stack_t **head, unsigned int line)
 		{"pint", pint},
 		{"pop", pop},
 		{"add", add},
+		{"sub", sub},
 		{"div", div_func},
 		{"mod", mod},
 		{"pchar", pchar},
