@@ -47,3 +47,36 @@ void pstr(stack_t **head, unsigned int n)
 	}
 	printf("\n");
 }
+
+/**
+ * rotr - function to print all
+ * @head: head of list
+ * @n: line number in 0
+ *
+ * Return: 0 or error code
+ */
+
+void rotr(stack_t **head, unsigned int n)
+{
+	stack_t *temp;
+	stack_t *tail;
+
+
+
+	if (*head == NULL || (*head)->next == NULL)
+		nop(head, n);
+	else
+	{
+		temp = NULL;
+		tail = *head;
+		while (tail != NULL)
+		{
+			temp = tail;
+			tail = tail->next;
+		}
+		temp->prev->next = NULL;
+		temp->prev = NULL;
+		temp->next = *head;
+		*head = temp;
+	}
+}
