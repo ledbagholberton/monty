@@ -67,6 +67,9 @@ void div_func(stack_t **head, unsigned int n);
 void mul(stack_t **head, unsigned int n);
 void mod(stack_t **head, unsigned int n);
 void pchar(stack_t **head, unsigned int n);
+void pstr(stack_t **head, unsigned int n);
+
+
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
