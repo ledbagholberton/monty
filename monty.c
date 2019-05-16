@@ -23,17 +23,8 @@ int main(int argc, char **argv)
 		tren.buf[i] = '\0';
 
 	head = NULL;
-	if (argc != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		free(tren.buf);
-		exit(EXIT_FAILURE); }
-	tren.fd = open(argv[1], O_RDONLY);
-	if (!argv[1] || tren.fd == -1)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		free(tren.buf);
-		exit(EXIT_FAILURE); }
+	errors(argc, argv);
+
 	num_letters = read(tren.fd, tren.buf, sizeof(char) * 1024);
 	if (num_letters == -1)
 	{
@@ -55,4 +46,26 @@ int main(int argc, char **argv)
 	free_dlistint(head);
 	free(tren.buf);
 	return (0);
+}
+
+/**
+ * errors - handle errors in main
+ * @argc: argument count
+ * @argv: argument value
+ *
+ * Return: 0 or exit error
+ */
+void errors(int argc, char **argv)
+{
+	if (argc != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		free(tren.buf);
+		exit(EXIT_FAILURE); }
+	tren.fd = open(argv[1], O_RDONLY);
+	if (!argv[1] || tren.fd == -1)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		free(tren.buf);
+		exit(EXIT_FAILURE); }
 }

@@ -46,7 +46,7 @@ typedef struct stack_s
 } stack_t;
 
 
-
+void errors(int argc, char **argv);
 void pint(stack_t **head, unsigned int n);
 size_t print_dlistint(const stack_t *h);
 size_t print_head(const stack_t *h);
@@ -60,6 +60,8 @@ void pall(stack_t **head, unsigned int n);
 void nop(stack_t **head, unsigned int n);
 void pop(stack_t **head, unsigned int n);
 void add(stack_t **head, unsigned int n);
+void swap(stack_t **head, unsigned int n);
+void rotl(stack_t **head, unsigned int n);
 void div_func(stack_t **head, unsigned int n);
 void mod(stack_t **head, unsigned int n);
 void pchar(stack_t **head, unsigned int n);

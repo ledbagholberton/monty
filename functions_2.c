@@ -49,6 +49,8 @@ void (*get_op_func(char *command))(stack_t **head, unsigned int line)
 		{"pchar", pchar},
 		{"nop", nop},
 		{"#", nop},
+		{"swap", swap},
+		{"rotl", rotl},
 		{NULL, NULL}
 	};
 	int i, len;
