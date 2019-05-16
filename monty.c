@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 	int num_letters, j, i;
 	char tmp[1000];
 	stack_t *head;
-	unsigned int line = 0;
+	unsigned int line = 1;
 
 	tren.buf = malloc(sizeof(char) * 100024);
 	if (tren.buf == NULL)
@@ -42,8 +42,8 @@ int main(int argc, char **argv)
 		tmp[i] = '\0';
 		if (tmp[0] != '\0' && tmp[0] != '\n')
 		{
-			line++;
 			exec_comp(tmp, &head, line); }
+		line++;
 		j++; }
 	close(tren.fd);
 	free_dlistint(head);
