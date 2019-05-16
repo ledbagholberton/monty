@@ -89,7 +89,6 @@ void nop(stack_t **head, unsigned int n)
 void pint(stack_t **head, unsigned int n)
 {
 	stack_t *head1;
-	(void) n;
 	head1 = *head;
 	if(!head1)
 	{
