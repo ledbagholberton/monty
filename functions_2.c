@@ -39,6 +39,7 @@ void (*get_op_func(char *command))(stack_t **head, unsigned int line)
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
+		{"pop", pop},
 		{"nop", nop},
 		{NULL, NULL}
 	};
