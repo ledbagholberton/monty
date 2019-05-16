@@ -91,5 +91,12 @@ void pint(stack_t **head, unsigned int n)
 	stack_t *head1;
 	(void) n;
 	head1 = *head;
+	if(!head1)
+	{
+		close(tren.fd);
+		free(tren.buf);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", n);
+		exit (EXIT_FAILURE);
+	}
 	print_head(head1);
 }
