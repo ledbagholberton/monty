@@ -59,6 +59,10 @@ int delete_dnodeint_at_index(stack_t **head, unsigned int index);
 void pall(stack_t **head, unsigned int n);
 void nop(stack_t **head, unsigned int n);
 void pop(stack_t **head, unsigned int n);
+void add(stack_t **head, unsigned int n);
+void div_func(stack_t **head, unsigned int n);
+void mod(stack_t **head, unsigned int n);
+void pchar(stack_t **head, unsigned int n);
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
